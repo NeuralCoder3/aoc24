@@ -41,13 +41,22 @@ let read_file (file_name : string) : string =
 let explode (s : string) : char list = String.to_seq s |> List.of_seq
 let implode (cs : char list) : string = List.to_seq cs |> String.of_seq
 
-let get_all_matches regexp s =
+let get_all_groups regexp s =
   let rec aux i =
     try
-    let m = Str.search_forward regexp s i in
-    let ms = Str.matched_group 0 s in
-    ms :: aux (m + String.length ms)
-    with Not_found -> []
+      let _ = Str.search_forward regexp s i in
+      let total = Str.matched_group 0 s in
+      
+      let rec gather_groups i =
+        try
+          let m = Str.matched_group i s in  
+          m :: gather_groups (i + 1)
+        with _ -> []  (* No more groups found *)
+      in
+      let groups = gather_groups 1 in  (* Start from group 1 to skip group 0, which is the entire match *)
+      (total, groups) :: aux (Str.match_end ())  
+      
+    with Not_found -> []  (* No more matches found *)
   in
   aux 0
 
