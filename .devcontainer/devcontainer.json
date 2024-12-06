@@ -1,0 +1,23 @@
+{
+  "image": "neuralcoder/ocaml_knobel24",
+  // "build": { 
+  //   "dockerfile": "Dockerfile"
+  // },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ocamllabs.ocaml-platform",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "GitHub.copilot",
+        "myriad-dreamin.tinymist",
+        "surv.typst-math",
+        "mathematic.vscode-latex",
+        "James-Yu.latex-workshop",
+        "tecosaur.latex-utilities",
+        "Soaibuzzaman.smt-z3",
+        "ms-vscode.cpptools",
+        "wayou.vscode-todo-highlight"
+      ]
+    }
+  }
+}
