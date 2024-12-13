@@ -1,4 +1,16 @@
 (library
  (name utils)
  (libraries str)
+ (modules utils)
+)
+
+(library
+ (name smt)
+ (libraries str z3)
+ (modules smt)
+)
+
+(env
+  (dev
+  (flags (:standard -warn-error -A -w -32)))
 )

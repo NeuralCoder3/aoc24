@@ -1,7 +1,7 @@
 (executable
  (public_name aoc)
  (name main)
- (libraries utils str
+ (libraries utils str smt
   ; bignum
   ; lp lp-glpk z3 
  ))

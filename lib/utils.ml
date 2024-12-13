@@ -195,3 +195,17 @@ let map_progress f xs =
 let rec transpose = function
   | [] | []::_ -> []
   | m -> List.map List.hd m :: transpose (List.map List.tl m)
+
+let tqdm_map f xs = 
+  let n = List.length xs in
+  let intermediate = n/100 in
+  let start = Sys.time () in
+  xs
+  |> List.mapi (fun i x ->
+    if i mod intermediate = 0 then
+      (let now = Sys.time () in
+      let elapsed = now -. start in
+      let remaining = elapsed /. float_of_int (i+1) *. float_of_int (n-i-1) in
+      Printf.printf "%d/%d (%d%%) - Elapsed: %.2fs - Remaining: %.2fs\n%!" i n (i*100/n) elapsed remaining);
+    f x
+  )
